@@ -1,4 +1,6 @@
-
+//Lee Zoe Randriatahina 
+// 03/06/2025 
+// This class highlight the possible moves and the controlled squares that the piece can go to 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -48,9 +50,37 @@ public class Piece {
     
     // TO BE IMPLEMENTED!
     //return a list of every square that is "controlled" by this piece. A square is controlled
-    //if the piece capture into it legally.
-    public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
-     return null;
+    //if the piece capture into it legally
+    //Pre condition : start piece must not be null 
+    //Post condition : the piece shoudl be able to move two squares horizontally left or right
+    // or two squares vertically  left or right.
+    // It highlights in green  the squares that the piece have control on 
+    public ArrayList<Square> getControlledSquares(Square[][] board, Square start) 
+    {
+      ArrayList<Square> control = new ArrayList<Square>();
+
+      
+      if( start.getCol()-2>0 && (board[start.getRow()][start.getCol()-2].getOccupyingPiece()==null || color != board[start.getRow()][start.getCol()-2].getOccupyingPiece().getColor())){
+        control.add(board[start.getRow()][start.getCol()-2]);
+      }
+      if((start.getRow()+2<8  && (board[start.getRow()+2][start.getCol()].getOccupyingPiece()==null || color != board[start.getRow()+2][start.getCol()].getOccupyingPiece().getColor()))){
+        control.add(board[start.getRow()+2][start.getCol()]);
+      }
+      if((start.getRow()-2>=0 && (board[start.getRow()-2][start.getCol()].getOccupyingPiece()==null || color != board[start.getRow()-2][start.getCol()].getOccupyingPiece().getColor()) )){
+        control.add(board[start.getRow()-2][start.getCol()]);
+      }
+     if  (  start.getCol()+2<8 && (board[start.getRow()][start.getCol()+2].getOccupyingPiece()==null || color != board[start.getRow()][start.getCol()+2].getOccupyingPiece().getColor()))
+     {
+      control.add(board[start.getRow()][start.getCol()+2]); 
+     }
+
+      
+
+    	return control;
+
+      
+      
+     
     }
     
 
@@ -60,7 +90,33 @@ public class Piece {
     //returns an arraylist of squares which are legal to move to
     //please note that your piece must have some sort of logic. Just being able to move to every square on the board is not
     //going to score any points.
-    public ArrayList<Square> getLegalMoves(Board b, Square start){
-    	return null;
+     // the name of my piece is Dabbaba 
+    //Pre condition : start piece must not be null 
+    //Post condition : the piece shoudl be able to move two squares horizontally left or right
+    // or two squares vertically  left or right depending on the validity of the locations, it can go it onto opposite piece
+    // It highlights  in red the possible location the piece can go 
+    public ArrayList<Square> getLegalMoves(Board b, Square start)
+    {
+      
+      ArrayList<Square> moves = new ArrayList<Square>();
+
+      
+      if( start.getCol()-2>0 && (b.getSquareArray()[start.getRow()][start.getCol()-2].getOccupyingPiece()==null || color != b.getSquareArray()[start.getRow()][start.getCol()-2].getOccupyingPiece().getColor())){
+        moves.add(b.getSquareArray()[start.getRow()][start.getCol()-2]);
+      }
+      if((start.getRow()+2<8  && (b.getSquareArray()[start.getRow()+2][start.getCol()].getOccupyingPiece()==null || color != b.getSquareArray()[start.getRow()+2][start.getCol()].getOccupyingPiece().getColor()))){
+        moves.add(b.getSquareArray()[start.getRow()+2][start.getCol()]);
+      }
+      if((start.getRow()-2>=0 && (b.getSquareArray()[start.getRow()-2][start.getCol()].getOccupyingPiece()==null || color != b.getSquareArray()[start.getRow()-2][start.getCol()].getOccupyingPiece().getColor()) )){
+        moves.add(b.getSquareArray()[start.getRow()-2][start.getCol()]);
+      }
+     if  (  start.getCol()+2<8 && (b.getSquareArray()[start.getRow()][start.getCol()+2].getOccupyingPiece()==null || color != b.getSquareArray()[start.getRow()][start.getCol()+2].getOccupyingPiece().getColor()))
+     {
+      moves.add(b.getSquareArray()[start.getRow()][start.getCol()+2]); 
+     }
+
+      
+
+    	return moves;
     }
 }
