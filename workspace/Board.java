@@ -276,6 +276,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             if ( currPiece.getLegalMoves(this ,fromMoveSquare).contains(endSquare) ) 
             {
                 
+               Piece capturedPiece = endSquare.getOccupyingPiece();
                endSquare.put(currPiece);
                fromMoveSquare.removePiece();
            
@@ -285,7 +286,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                {
                  fromMoveSquare.put(currPiece);
                  endSquare.removePiece();
-               }else
+                 if ( capturedPiece != null)
+                 {
+                    endSquare.put(capturedPiece);
+                 }
+               }
+               else
                {
                whiteTurn = !whiteTurn;
                }
